@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambrósio José Jonas | Escritor Contemporâneo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;600;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root { --gold: #C5A059; --dark: #050A14; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: #f3f4f6; overflow-x: hidden; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .reading { font-family: 'Lora', serif; line-height: 1.8; }
+        
+        .glass { background: rgba(5, 10, 20, 0.96); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .page-content { display: none; min-height: 100vh; padding-top: 90px; animation: pageFade 0.6s ease-out forwards; }
+        .page-active { display: block; }
+        @keyframes pageFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        #mobile-overlay { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(100%); }
+        #mobile-overlay.active { transform: translateX(0); }
+
+        .admin-tab-active { border-bottom: 3px solid var(--gold); color: var(--gold); }
+        .gold-gradient { background: linear-gradient(135deg, #C5A059 0%, #8E6D2F 100%); }
+        
+        .quote-card { background: linear-gradient(to right, rgba(197, 160, 89, 0.05), rgba(5, 10, 20, 0.5)); border-left: 3px solid var(--gold); }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-[100] glass px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="goTo('home')">
+                <span class="serif text-3xl font-black text-[var(--gold)]">AJJ</span>
+                <span class="text-[9px] uppercase tracking-[0.4em] font-black hidden sm:block border-l border-white/20 pl-4">Ambrósio Jonas</span>
+            </div>
+
+            <!-- Menu Desktop -->
+            <div class="hidden lg:flex gap-8 text-[10px] uppercase tracking-[0.3em] font-black items-center">
+                <a href="javascript:void(0)" onclick="goTo('home')" class="hover:text-[var(--gold)] transition">Início</a>
+                <a href="javascript:void(0)" onclick="goTo('blog')" class="hover:text-[var(--gold)] transition">Feed</a>
+                <a href="javascript:void(0)" onclick="goTo('livros')" class="hover:text-[var(--gold)] transition">Biblioteca</a>
+                <a href="javascript:void(0)" onclick="goTo('frases-page')" class="hover:text-[var(--gold)] transition text-[var(--gold)]">Citações</a>
+                <a href="javascript:void(0)" onclick="goTo('sobre')" class="hover:text-[var(--gold)] transition">O Autor</a>
+                <button onclick="goTo('admin')" class="bg-[var(--gold)] text-black px-5 py-2 rounded-full font-black hover:brightness-110 transition">Escritório</button>
+            </div>
+
+            <!-- Botão Menu Mobile -->
+            <button class="lg:hidden text-[var(--gold)]" onclick="toggleMenu(true)"><i data-lucide="menu" class="w-8 h-8"></i></button>
+        </div>
+    </nav>
+
+    <!-- OVERLAY MENU MOBILE -->
+    <div id="mobile-overlay" class="fixed inset-0 z-[200] bg-[var(--dark)] flex flex-col p-10">
+        <div class="flex justify-end">
+            <button onclick="toggleMenu(false)" class="text-[var(--gold)]"><i data-lucide="x" class="w-10 h-10"></i></button>
+        </div>
+        <div class="flex flex-col gap-8 mt-12 text-3xl serif font-bold text-white uppercase">
+            <a href="#" onclick="goTo('home'); toggleMenu(false)">Início</a>
+            <a href="#" onclick="goTo('blog'); toggleMenu(false)">Feed</a>
+            <a href="#" onclick="goTo('livros'); toggleMenu(false)">Biblioteca</a>
+            <a href="#" onclick="goTo('frases-page'); toggleMenu(false)" class="text-[var(--gold)]">Citações</a>
+            <a href="#" onclick="goTo('sobre'); toggleMenu(false)">O Autor</a>
+            <a href="#" onclick="goTo('admin'); toggleMenu(false)" class="text-sm tracking-widest opacity-50">Escritório do Autor</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- HOME -->
+        <section id="home" class="page-content page-active">
+            <div class="max-w-7xl mx-auto px-6 py-10 lg:py-20 grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-10 text-center lg:text-left">
+                    <h2 class="serif text-6xl md:text-8xl lg:text-9xl font-black leading-[0.8] tracking-tighter italic">O Pensamento <br><span class="text-[var(--gold)] not-italic">Liberta</span>.</h2>
+                    <p class="text-gray-400 text-xl font-light max-w-xl mx-auto lg:mx-0 leading-relaxed italic border-l-2 border-[var(--gold)] pl-6">"Escrevo para dar corpo ao silêncio e voz àquilo que a alma ainda não soube nomear."</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button onclick="goTo('blog')" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest shadow-2xl rounded-sm">Ler Feed</button>
+                        <button onclick="goTo('frases-page')" class="border border-white/20 px-12 py-5 font-black uppercase text-xs tracking-widest hover:bg-white hover:text-black transition rounded-sm">Ver Citações</button>
+                    </div>
+                </div>
+                <div class="flex justify-center relative">
+                    <img src="https://i.postimg.cc/qR40rysN/Whats-App-Image-2026-03-18-at-05-40-01-Photoroom.png" 
+                         class="rounded-3xl w-full max-w-md border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition duration-1000">
+                </div>
+            </div>
+        </section>
+
+        <!-- FRASES (CITAÇÕES PÁGINA) -->
+        <section id="frases-page" class="page-content px-6 py-20">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="serif text-5xl md:text-7xl font-bold text-center mb-20 italic">Citações & <br><span class="text-[var(--gold)]">Fragmentos</span></h2>
+                <div id="quotes-container" class="space-y-12">
+                    <!-- Frases modelos iniciais -->
+                    <div class="quote-card p-10 rounded-2xl">
+                        <p class="serif text-3xl italic text-white leading-relaxed">"A mente é um território vasto; a espiritualidade é o mapa que nos impede de nela nos perdermos."</p>
+                        <p class="mt-6 text-[var(--gold)] font-bold uppercase tracking-widest text-[10px]">— Ambrósio José Jonas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="sobre" class="page-content px-6 py-20 bg-[#070c18]">
+            <div class="max-w-3xl mx-auto space-y-12">
+                <h2 class="serif text-5xl md:text-7xl font-bold text-center mb-10 text-[var(--gold)]">A Jornada</h2>
+                <div class="reading text-xl md:text-2xl text-gray-300 leading-relaxed space-y-8 italic">
+                    <p>Ambrósio José Jonas é uma das vozes mais profundas da literatura contemporânea africana. Foca o seu trabalho no despertar da consciência e na espiritualidade humana.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEED -->
+        <section id="blog" class="page-content px-6 py-10">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="serif text-5xl font-black mb-16 border-b border-white/5 pb-6 italic">Feed de Reflexões</h2>
+                <div id="feed-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-12"></div>
+            </div>
+        </section>
+
+        <!-- BIBLIOTECA -->
+        <section id="livros" class="page-content px-6 py-10">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="serif text-5xl font-black mb-16 border-b border-white/5 pb-6 italic">Minha Biblioteca</h2>
+                <div id="books-container" class="grid md:grid-cols-2 lg:grid-cols-4 gap-10"></div>
+            </div>
+        </section>
+
+        <!-- READER -->
+        <section id="reader" class="page-content px-6 py-20">
+            <div class="max-w-3xl mx-auto" id="reader-view"></div>
+        </section>
+
+        <!-- ESCRITÓRIO (ADMIN) -->
+        <section id="admin" class="page-content bg-white text-black min-h-screen pt-20">
+            <div id="admin-auth" class="flex flex-col items-center justify-center pt-20 space-y-8">
+                <h2 class="serif text-4xl font-bold text-black italic underline decoration-[var(--gold)]">Escritório do Autor</h2>
+                <input id="admin-pass" type="password" placeholder="Senha do Sistema" class="bg-gray-100 p-5 rounded-2xl text-center text-3xl outline-none border-2 border-transparent focus:border-[var(--gold)] text-black font-serif">
+                <button onclick="checkPass()" class="gold-gradient text-black px-16 py-4 font-black uppercase text-xs tracking-widest rounded-full shadow-xl">Aceder</button>
+            </div>
+
+            <div id="admin-panel" class="hidden max-w-6xl mx-auto px-6 py-10">
+                <div class="flex gap-8 mb-12 text-xs font-black uppercase tracking-widest border-b border-gray-100 overflow-x-auto">
+                    <button id="tab-artigos" onclick="setTab('artigos')" class="pb-4 admin-tab-active">Artigos</button>
+                    <button id="tab-livros" onclick="setTab('livros')" class="pb-4 text-gray-400">Livros</button>
+                    <button id="tab-frases" onclick="setTab('frases')" class="pb-4 text-gray-400">Frases</button>
+                    <button onclick="goTo('home')" class="pb-4 text-red-500 ml-auto">Sair</button>
+                </div>
+
+                <!-- Aba Artigos -->
+                <div id="panel-artigos" class="space-y-8">
+                    <input id="art-title" type="text" placeholder="Título do Artigo" class="w-full text-5xl font-serif border-none outline-none">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <select id="art-cat" class="bg-gray-100 p-5 rounded-xl font-bold uppercase text-xs outline-none"><option>Vida</option><option>Mente</option><option>Espiritualidade</option></select>
+                        <input id="art-img" type="text" placeholder="URL da Capa" class="bg-gray-100 p-5 rounded-xl outline-none">
+                    </div>
+                    <textarea id="art-content" placeholder="Escreva o texto longo..." class="w-full h-96 bg-gray-50 p-8 rounded-2xl text-xl font-serif outline-none"></textarea>
+                    <button onclick="publishArticle()" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest rounded-full">Publicar Artigo</button>
+                </div>
+
+                <!-- Aba Livros -->
+                <div id="panel-livros" class="hidden space-y-8">
+                    <input id="book-title" type="text" placeholder="Título do Livro" class="w-full text-5xl font-serif border-none outline-none">
+                    <input id="book-img" type="text" placeholder="URL da Capa do Livro" class="bg-gray-100 p-5 rounded-xl outline-none w-full">
+                    <input id="book-link" type="text" placeholder="Link do PDF (Google Drive)" class="bg-gray-100 p-5 rounded-xl outline-none w-full">
+                    <textarea id="book-desc" placeholder="Sinopse..." class="w-full h-40 bg-gray-50 p-8 rounded-2xl text-xl font-serif outline-none"></textarea>
+                    <button onclick="publishBook()" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest rounded-full">Adicionar Livro</button>
+                </div>
+
+                <!-- Aba Frases -->
+                <div id="panel-frases" class="hidden space-y-8">
+                    <textarea id="quote-text" placeholder="Escreva aqui sua frase curta e impactante..." class="w-full h-64 bg-gray-50 p-8 rounded-2xl text-3xl font-serif italic border-none outline-none text-center"></textarea>
+                    <button onclick="publishQuote()" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest rounded-full w-full">Publicar Citação</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 border-t border-white/5 text-center mt-20">
+        <div class="serif text-3xl text-[var(--gold)] mb-4 italic uppercase tracking-tighter">Ambrósio Jonas</div>
+        <p class="text-[9px] tracking-[0.5em] text-gray-600 uppercase font-black italic">Escritor Contemporâneo • Luanda • África</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDERUMUvR9uc3NbcypmcD9_y3TxM4Q7R2Q",
+            authDomain: "ambrosiosite-315dc.firebaseapp.com",
+            projectId: "ambrosiosite-315dc",
+            storageBucket: "ambrosiosite-315dc.firebasestorage.app",
+            messagingSenderId: "230511756899",
+            appId: "1:230511756899:web:494ce7dec082bc8d0f5a56",
+            measurementId: "G-RTYLH9D6HY"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // NAVEGAÇÃO
+        window.goTo = function(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('page-active'));
+            document.getElementById(pageId).classList.add('page-active');
+            window.scrollTo(0,0);
+            if(pageId === 'blog') loadFeed();
+            if(pageId === 'livros') loadBooks();
+            if(pageId === 'frases-page') loadQuotes();
+        };
+
+        window.toggleMenu = (open) => document.getElementById('mobile-overlay').classList.toggle('active', open);
+
+        window.setTab = (tab) => {
+            document.getElementById('panel-artigos').classList.toggle('hidden', tab !== 'artigos');
+            document.getElementById('panel-livros').classList.toggle('hidden', tab !== 'livros');
+            document.getElementById('panel-frases').classList.toggle('hidden', tab !== 'frases');
+            document.getElementById('tab-artigos').className = tab === 'artigos' ? 'pb-4 admin-tab-active' : 'pb-4 text-gray-400';
+            document.getElementById('tab-livros').className = tab === 'livros' ? 'pb-4 admin-tab-active' : 'pb-4 text-gray-400';
+            document.getElementById('tab-frases').className = tab === 'frases' ? 'pb-4 admin-tab-active' : 'pb-4 text-gray-400';
+        };
+
+        window.checkPass = () => {
+            if(document.getElementById('admin-pass').value === 'ambro2004') {
+                document.getElementById('admin-auth').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+            } else { alert("Senha incorreta."); }
+        };
+
+        // SALVAR DADOS
+        window.publishArticle = async () => {
+            const title = document.getElementById('art-title').value;
+            const content = document.getElementById('art-content').value;
+            const cat = document.getElementById('art-cat').value;
+            const img = document.getElementById('art-img').value || "https://images.unsplash.com/photo-1455390582262-044cdead277a";
+            if(!title || !content) return alert("Preencha título e conteúdo!");
+            await addDoc(collection(db, "posts"), { title, content, cat, img, timestamp: Date.now(), date: new Date().toLocaleDateString('pt-PT', {day:'2-digit', month:'long'}) });
+            alert("Artigo publicado!"); location.reload();
+        };
+
+        window.publishBook = async () => {
+            const title = document.getElementById('book-title').value;
+            const desc = document.getElementById('book-desc').value;
+            const img = document.getElementById('book-img').value;
+            const link = document.getElementById('book-link').value;
+            await addDoc(collection(db, "books"), { title, desc, img, link, timestamp: Date.now() });
+            alert("Livro adicionado!"); location.reload();
+        };
+
+        window.publishQuote = async () => {
+            const text = document.getElementById('quote-text').value;
+            if(!text) return alert("Escreva a frase!");
+            await addDoc(collection(db, "quotes"), { text, timestamp: Date.now() });
+            alert("Frase publicada!"); location.reload();
+        };
+
+        // CARREGAR DADOS
+        async function loadFeed() {
+            const grid = document.getElementById('feed-container'); grid.innerHTML = '';
+            const snap = await getDocs(query(collection(db, "posts"), orderBy("timestamp", "desc")));
+            snap.forEach(doc => {
+                const p = doc.data();
+                grid.innerHTML += `
+                    <div class="cursor-pointer bg-white/[0.02] border border-white/5 p-6 rounded-3xl hover:border-[var(--gold)] transition duration-500 group" 
+                         onclick="openPost('${encodeURIComponent(p.title)}', '${p.cat}', '${p.date}', '${p.img}', \`${encodeURIComponent(p.content)}\`)">
+                        <img src="${p.img}" class="h-60 w-full object-cover rounded-2xl mb-6 grayscale group-hover:grayscale-0 transition duration-700">
+                        <span class="text-[var(--gold)] text-[9px] font-black uppercase tracking-widest">${p.cat}</span>
+                        <h3 class="serif text-2xl font-bold mt-4 mb-4">${p.title}</h3>
+                        <p class="text-gray-500 text-sm line-clamp-3 mb-6">${p.content}</p>
+                        <div class="flex justify-between text-[9px] font-black text-gray-600 uppercase tracking-widest pt-6 border-t border-white/5">
+                            <span>${p.date}</span><span>Ler Artigo +</span>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        async function loadBooks() {
+            const grid = document.getElementById('books-container'); grid.innerHTML = '';
+            const snap = await getDocs(query(collection(db, "books"), orderBy("timestamp", "desc")));
+            snap.forEach(doc => {
+                const b = doc.data();
+                grid.innerHTML += `
+                    <div class="bg-white/5 p-6 rounded-3xl border border-white/5 hover:border-[var(--gold)] transition text-center">
+                        <img src="${b.img}" class="h-72 w-full object-cover rounded-xl shadow-2xl mb-6">
+                        <h3 class="serif text-xl font-bold mb-2">${b.title}</h3>
+                        <p class="text-gray-500 text-[11px] line-clamp-2 mb-6 font-light italic leading-relaxed">${b.desc}</p>
+                        <a href="${b.link}" target="_blank" class="block w-full py-4 gold-gradient text-black font-black uppercase text-[9px] tracking-widest rounded-lg">Baixar Grátis</a>
+                    </div>`;
+            });
+        }
+
+        async function loadQuotes() {
+            const container = document.getElementById('quotes-container');
+            const snap = await getDocs(query(collection(db, "quotes"), orderBy("timestamp", "desc")));
+            if(!snap.empty) container.innerHTML = '';
+            snap.forEach(doc => {
+                const q = doc.data();
+                container.innerHTML += `
+                    <div class="quote-card p-10 rounded-2xl animate-pageFade">
+                        <p class="serif text-3xl md:text-4xl italic text-white leading-relaxed">"${q.text}"</p>
+                        <p class="mt-6 text-[var(--gold)] font-bold uppercase tracking-widest text-[10px]">— Ambrósio José Jonas</p>
+                    </div>`;
+            });
+        }
+
+        window.openPost = (title, cat, date, img, content) => {
+            const view = document.getElementById('reader-view'); goTo('reader');
+            view.innerHTML = `
+                <div class="space-y-12 pb-20 fade-in">
+                    <span class="text-[var(--gold)] font-black uppercase text-[10px] tracking-[0.4em]">${cat}</span>
+                    <h1 class="serif text-5xl md:text-8xl font-black leading-tight">${decodeURIComponent(title)}</h1>
+                    <p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest border-b border-white/5 pb-8 italic">${date} • Por Ambrósio José Jonas</p>
+                    <img src="${img}" class="w-full h-auto rounded-3xl shadow-2xl">
+                    <div class="reading text-xl md:text-3xl text-gray-300 space-y-10 italic">
+                        ${decodeURIComponent(content).replace(/\n/g, '<br>')}
+                    </div>
+                    <button onclick="goTo('blog')" class="pt-20 text-[var(--gold)] font-black uppercase text-xs tracking-widest flex items-center gap-2">← Voltar ao Feed</button>
+                </div>`;
+            lucide.createIcons();
+        };
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>
