@@ -14,20 +14,15 @@
         body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: #f3f4f6; overflow-x: hidden; }
         .serif { font-family: 'Playfair Display', serif; }
         .reading { font-family: 'Lora', serif; line-height: 1.8; }
-        
-        .glass { background: rgba(5, 10, 20, 0.96); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .page-content { display: none; min-height: 100vh; padding-top: 90px; animation: pageFade 0.6s ease-out forwards; }
+        .glass { background: rgba(5, 10, 20, 0.98); backdrop-filter: blur(25px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .page-content { display: none; min-height: 100vh; padding-top: 90px; animation: pageFade 0.5s ease-out forwards; }
         .page-active { display: block; }
         @keyframes pageFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
         #mobile-overlay { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(100%); }
         #mobile-overlay.active { transform: translateX(0); }
-
-        .admin-tab-active { border-bottom: 3px solid var(--gold); color: var(--gold); }
+        .admin-tab-active { border-bottom: 3px solid var(--gold); color: var(--gold); font-weight: 900; }
         .gold-gradient { background: linear-gradient(135deg, #C5A059 0%, #8E6D2F 100%); }
-        
-        .quote-card { background: linear-gradient(to right, rgba(197, 160, 89, 0.05), rgba(5, 10, 20, 0.5)); border-left: 3px solid var(--gold); }
-        
+        .quote-card { background: rgba(197, 160, 89, 0.03); border-left: 4px solid var(--gold); }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: var(--gold); }
     </style>
@@ -41,34 +36,27 @@
                 <span class="serif text-3xl font-black text-[var(--gold)]">AJJ</span>
                 <span class="text-[9px] uppercase tracking-[0.4em] font-black hidden sm:block border-l border-white/20 pl-4">Ambrósio Jonas</span>
             </div>
-
-            <!-- Menu Desktop -->
             <div class="hidden lg:flex gap-8 text-[10px] uppercase tracking-[0.3em] font-black items-center">
-                <a href="javascript:void(0)" onclick="goTo('home')" class="hover:text-[var(--gold)] transition">Início</a>
-                <a href="javascript:void(0)" onclick="goTo('blog')" class="hover:text-[var(--gold)] transition">Feed</a>
-                <a href="javascript:void(0)" onclick="goTo('livros')" class="hover:text-[var(--gold)] transition">Biblioteca</a>
-                <a href="javascript:void(0)" onclick="goTo('frases-page')" class="hover:text-[var(--gold)] transition text-[var(--gold)]">Citações</a>
-                <a href="javascript:void(0)" onclick="goTo('sobre')" class="hover:text-[var(--gold)] transition">O Autor</a>
-                <button onclick="goTo('admin')" class="bg-[var(--gold)] text-black px-5 py-2 rounded-full font-black hover:brightness-110 transition">Escritório</button>
+                <a href="#" onclick="goTo('home')" class="hover:text-[var(--gold)] transition">Início</a>
+                <a href="#" onclick="goTo('blog')" class="hover:text-[var(--gold)] transition">Feed</a>
+                <a href="#" onclick="goTo('livros')" class="hover:text-[var(--gold)] transition">Biblioteca</a>
+                <a href="#" onclick="goTo('frases-page')" class="hover:text-[var(--gold)] transition text-[var(--gold)]">Citações</a>
+                <a href="#" onclick="goTo('sobre')" class="hover:text-[var(--gold)] transition">Sobre</a>
+                <button onclick="goTo('admin')" class="bg-[var(--gold)] text-black px-6 py-2 rounded-full font-black hover:scale-105 transition">Escritório</button>
             </div>
-
-            <!-- Botão Menu Mobile -->
             <button class="lg:hidden text-[var(--gold)]" onclick="toggleMenu(true)"><i data-lucide="menu" class="w-8 h-8"></i></button>
         </div>
     </nav>
 
-    <!-- OVERLAY MENU MOBILE -->
+    <!-- MENU MOBILE -->
     <div id="mobile-overlay" class="fixed inset-0 z-[200] bg-[var(--dark)] flex flex-col p-10">
-        <div class="flex justify-end">
-            <button onclick="toggleMenu(false)" class="text-[var(--gold)]"><i data-lucide="x" class="w-10 h-10"></i></button>
-        </div>
-        <div class="flex flex-col gap-8 mt-12 text-3xl serif font-bold text-white uppercase">
+        <div class="flex justify-end"><button onclick="toggleMenu(false)" class="text-[var(--gold)]"><i data-lucide="x" class="w-10 h-10"></i></button></div>
+        <div class="flex flex-col gap-8 mt-12 text-3xl serif font-bold text-white uppercase text-center">
             <a href="#" onclick="goTo('home'); toggleMenu(false)">Início</a>
             <a href="#" onclick="goTo('blog'); toggleMenu(false)">Feed</a>
             <a href="#" onclick="goTo('livros'); toggleMenu(false)">Biblioteca</a>
             <a href="#" onclick="goTo('frases-page'); toggleMenu(false)" class="text-[var(--gold)]">Citações</a>
             <a href="#" onclick="goTo('sobre'); toggleMenu(false)">O Autor</a>
-            <a href="#" onclick="goTo('admin'); toggleMenu(false)" class="text-sm tracking-widest opacity-50">Escritório do Autor</a>
         </div>
     </div>
 
@@ -77,118 +65,119 @@
         <section id="home" class="page-content page-active">
             <div class="max-w-7xl mx-auto px-6 py-10 lg:py-20 grid lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-10 text-center lg:text-left">
-                    <h2 class="serif text-6xl md:text-8xl lg:text-9xl font-black leading-[0.8] tracking-tighter italic">O Pensamento <br><span class="text-[var(--gold)] not-italic">Liberta</span>.</h2>
-                    <p class="text-gray-400 text-xl font-light max-w-xl mx-auto lg:mx-0 leading-relaxed italic border-l-2 border-[var(--gold)] pl-6">"Escrevo para dar corpo ao silêncio e voz àquilo que a alma ainda não soube nomear."</p>
+                    <h2 class="serif text-6xl md:text-8xl lg:text-9xl font-black leading-[0.8] tracking-tighter italic">Pensar <br><span class="text-[var(--gold)] not-italic">Profundo</span>.</h2>
+                    <p class="text-gray-400 text-xl font-light max-w-xl mx-auto lg:mx-0 leading-relaxed italic border-l-2 border-[var(--gold)] pl-6">"A minha escrita é um espelho onde a alma africana se reconhece e se liberta."</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button onclick="goTo('blog')" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest shadow-2xl rounded-sm">Ler Feed</button>
-                        <button onclick="goTo('frases-page')" class="border border-white/20 px-12 py-5 font-black uppercase text-xs tracking-widest hover:bg-white hover:text-black transition rounded-sm">Ver Citações</button>
+                        <button onclick="goTo('blog')" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest shadow-2xl rounded-sm">Explorar Feed</button>
+                        <button onclick="goTo('livros')" class="border border-white/20 px-12 py-5 font-black uppercase text-xs tracking-widest hover:bg-white hover:text-black transition rounded-sm">Minha Obra</button>
                     </div>
                 </div>
-                <div class="flex justify-center relative">
-                    <img src="https://i.postimg.cc/qR40rysN/Whats-App-Image-2026-03-18-at-05-40-01-Photoroom.png" 
-                         class="rounded-3xl w-full max-w-md border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition duration-1000">
-                </div>
+                <div class="flex justify-center"><img src="https://i.postimg.cc/qR40rysN/Whats-App-Image-2026-03-18-at-05-40-01-Photoroom.png" class="rounded-3xl w-full max-w-md border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition duration-1000"></div>
             </div>
         </section>
 
-        <!-- FRASES (CITAÇÕES PÁGINA) -->
-        <section id="frases-page" class="page-content px-6 py-20">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="serif text-5xl md:text-7xl font-bold text-center mb-20 italic">Citações & <br><span class="text-[var(--gold)]">Fragmentos</span></h2>
-                <div id="quotes-container" class="space-y-12">
-                    <!-- Frases modelos iniciais -->
-                    <div class="quote-card p-10 rounded-2xl">
-                        <p class="serif text-3xl italic text-white leading-relaxed">"A mente é um território vasto; a espiritualidade é o mapa que nos impede de nela nos perdermos."</p>
-                        <p class="mt-6 text-[var(--gold)] font-bold uppercase tracking-widest text-[10px]">— Ambrósio José Jonas</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SOBRE -->
-        <section id="sobre" class="page-content px-6 py-20 bg-[#070c18]">
-            <div class="max-w-3xl mx-auto space-y-12">
-                <h2 class="serif text-5xl md:text-7xl font-bold text-center mb-10 text-[var(--gold)]">A Jornada</h2>
-                <div class="reading text-xl md:text-2xl text-gray-300 leading-relaxed space-y-8 italic">
-                    <p>Ambrósio José Jonas é uma das vozes mais profundas da literatura contemporânea africana. Foca o seu trabalho no despertar da consciência e na espiritualidade humana.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEED -->
+        <!-- FEED (BLOG) -->
         <section id="blog" class="page-content px-6 py-10">
             <div class="max-w-7xl mx-auto">
-                <h2 class="serif text-5xl font-black mb-16 border-b border-white/5 pb-6 italic">Feed de Reflexões</h2>
-                <div id="feed-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-12"></div>
+                <h2 class="serif text-5xl font-black mb-16 italic text-center">Feed de Reflexões</h2>
+                <div id="feed-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Conteúdo entra aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CITAÇÕES -->
+        <section id="frases-page" class="page-content px-6 py-20">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-5xl md:text-7xl font-bold text-center mb-20 italic">Citações do <span class="text-[var(--gold)]">Autor</span></h2>
+                <div id="quotes-container" class="space-y-12"></div>
             </div>
         </section>
 
         <!-- BIBLIOTECA -->
         <section id="livros" class="page-content px-6 py-10">
             <div class="max-w-7xl mx-auto">
-                <h2 class="serif text-5xl font-black mb-16 border-b border-white/5 pb-6 italic">Minha Biblioteca</h2>
+                <h2 class="serif text-5xl font-black mb-16 italic text-center">Biblioteca Digital</h2>
                 <div id="books-container" class="grid md:grid-cols-2 lg:grid-cols-4 gap-10"></div>
             </div>
         </section>
 
-        <!-- READER -->
-        <section id="reader" class="page-content px-6 py-20">
-            <div class="max-w-3xl mx-auto" id="reader-view"></div>
+        <!-- SOBRE -->
+        <section id="sobre" class="page-content px-6 py-20 bg-[#070c18]">
+            <div class="max-w-3xl mx-auto space-y-12 text-center">
+                <h2 class="serif text-5xl md:text-7xl font-bold text-[var(--gold)] italic">Ambrósio José Jonas</h2>
+                <div class="reading text-xl md:text-2xl text-gray-300 leading-relaxed italic space-y-8">
+                    <p>Escritor, pensador e explorador da consciência humana. Através das suas obras, Ambrósio convida-nos a uma viagem pelas raízes da nossa existência.</p>
+                </div>
+            </div>
         </section>
+
+        <!-- READER -->
+        <section id="reader" class="page-content px-6 py-20"><div class="max-w-3xl mx-auto" id="reader-view"></div></section>
 
         <!-- ESCRITÓRIO (ADMIN) -->
         <section id="admin" class="page-content bg-white text-black min-h-screen pt-20">
             <div id="admin-auth" class="flex flex-col items-center justify-center pt-20 space-y-8">
-                <h2 class="serif text-4xl font-bold text-black italic underline decoration-[var(--gold)]">Escritório do Autor</h2>
-                <input id="admin-pass" type="password" placeholder="Senha do Sistema" class="bg-gray-100 p-5 rounded-2xl text-center text-3xl outline-none border-2 border-transparent focus:border-[var(--gold)] text-black font-serif">
+                <h2 class="serif text-4xl font-bold">Escritório do Autor</h2>
+                <input id="admin-pass" type="password" placeholder="Senha..." class="bg-gray-100 p-5 rounded-2xl text-center text-3xl outline-none focus:ring-2 focus:ring-[var(--gold)] text-black">
                 <button onclick="checkPass()" class="gold-gradient text-black px-16 py-4 font-black uppercase text-xs tracking-widest rounded-full shadow-xl">Aceder</button>
             </div>
 
             <div id="admin-panel" class="hidden max-w-6xl mx-auto px-6 py-10">
-                <div class="flex gap-8 mb-12 text-xs font-black uppercase tracking-widest border-b border-gray-100 overflow-x-auto">
-                    <button id="tab-artigos" onclick="setTab('artigos')" class="pb-4 admin-tab-active">Artigos</button>
-                    <button id="tab-livros" onclick="setTab('livros')" class="pb-4 text-gray-400">Livros</button>
-                    <button id="tab-frases" onclick="setTab('frases')" class="pb-4 text-gray-400">Frases</button>
-                    <button onclick="goTo('home')" class="pb-4 text-red-500 ml-auto">Sair</button>
+                <div class="flex gap-8 mb-12 text-xs font-black uppercase tracking-widest border-b border-gray-100 overflow-x-auto pb-4">
+                    <button id="tab-artigos" onclick="setTab('artigos')" class="admin-tab-active">Artigos</button>
+                    <button id="tab-livros" onclick="setTab('livros')">Livros</button>
+                    <button id="tab-frases" onclick="setTab('frases')">Frases</button>
+                    <button onclick="location.reload()" class="ml-auto text-red-500">Sair</button>
                 </div>
 
-                <!-- Aba Artigos -->
-                <div id="panel-artigos" class="space-y-8">
-                    <input id="art-title" type="text" placeholder="Título do Artigo" class="w-full text-5xl font-serif border-none outline-none">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <select id="art-cat" class="bg-gray-100 p-5 rounded-xl font-bold uppercase text-xs outline-none"><option>Vida</option><option>Mente</option><option>Espiritualidade</option></select>
-                        <input id="art-img" type="text" placeholder="URL da Capa" class="bg-gray-100 p-5 rounded-xl outline-none">
+                <!-- PAINEL ARTIGOS -->
+                <div id="panel-artigos" class="space-y-10">
+                    <div class="bg-gray-50 p-8 rounded-3xl space-y-4">
+                        <input id="art-title" type="text" placeholder="Título" class="w-full text-4xl font-serif bg-transparent border-none outline-none">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <select id="art-cat" class="bg-white p-4 rounded-xl outline-none font-bold uppercase text-[10px]"><option>Vida</option><option>Mente</option><option>Espiritualidade</option></select>
+                            <input id="art-img" type="text" placeholder="Link da Foto" class="bg-white p-4 rounded-xl outline-none">
+                        </div>
+                        <textarea id="art-content" placeholder="Texto..." class="w-full h-48 bg-white p-6 rounded-2xl text-xl font-serif outline-none"></textarea>
+                        <button id="btn-art" onclick="publishArticle()" class="gold-gradient text-black px-10 py-4 font-black uppercase text-xs tracking-widest rounded-full">Publicar Artigo</button>
                     </div>
-                    <textarea id="art-content" placeholder="Escreva o texto longo..." class="w-full h-96 bg-gray-50 p-8 rounded-2xl text-xl font-serif outline-none"></textarea>
-                    <button onclick="publishArticle()" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest rounded-full">Publicar Artigo</button>
+                    <div id="list-artigos" class="space-y-4 bg-gray-100 p-6 rounded-3xl"></div>
                 </div>
 
-                <!-- Aba Livros -->
-                <div id="panel-livros" class="hidden space-y-8">
-                    <input id="book-title" type="text" placeholder="Título do Livro" class="w-full text-5xl font-serif border-none outline-none">
-                    <input id="book-img" type="text" placeholder="URL da Capa do Livro" class="bg-gray-100 p-5 rounded-xl outline-none w-full">
-                    <input id="book-link" type="text" placeholder="Link do PDF (Google Drive)" class="bg-gray-100 p-5 rounded-xl outline-none w-full">
-                    <textarea id="book-desc" placeholder="Sinopse..." class="w-full h-40 bg-gray-50 p-8 rounded-2xl text-xl font-serif outline-none"></textarea>
-                    <button onclick="publishBook()" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest rounded-full">Adicionar Livro</button>
+                <!-- PAINEL LIVROS -->
+                <div id="panel-livros" class="hidden space-y-10">
+                    <div class="bg-gray-50 p-8 rounded-3xl space-y-4">
+                        <input id="book-title" type="text" placeholder="Título do Livro" class="w-full text-4xl font-serif bg-transparent border-none outline-none">
+                        <input id="book-img" type="text" placeholder="Link da Capa" class="bg-white p-4 rounded-xl w-full outline-none">
+                        <input id="book-link" type="text" placeholder="Link do PDF" class="bg-white p-4 rounded-xl w-full outline-none">
+                        <textarea id="book-desc" placeholder="Resumo..." class="w-full h-32 bg-white p-6 rounded-2xl outline-none"></textarea>
+                        <button id="btn-book" onclick="publishBook()" class="gold-gradient text-black px-10 py-4 font-black uppercase text-xs tracking-widest rounded-full">Adicionar Livro</button>
+                    </div>
+                    <div id="list-livros" class="space-y-4 bg-gray-100 p-6 rounded-3xl"></div>
                 </div>
 
-                <!-- Aba Frases -->
-                <div id="panel-frases" class="hidden space-y-8">
-                    <textarea id="quote-text" placeholder="Escreva aqui sua frase curta e impactante..." class="w-full h-64 bg-gray-50 p-8 rounded-2xl text-3xl font-serif italic border-none outline-none text-center"></textarea>
-                    <button onclick="publishQuote()" class="gold-gradient text-black px-12 py-5 font-black uppercase text-xs tracking-widest rounded-full w-full">Publicar Citação</button>
+                <!-- PAINEL FRASES -->
+                <div id="panel-frases" class="hidden space-y-10">
+                    <div class="bg-gray-50 p-8 rounded-3xl space-y-4">
+                        <textarea id="quote-text" placeholder="Sua frase..." class="w-full h-32 bg-white p-6 rounded-2xl text-2xl font-serif italic outline-none"></textarea>
+                        <button id="btn-quote" onclick="publishQuote()" class="gold-gradient text-black px-10 py-4 font-black uppercase text-xs tracking-widest rounded-full">Publicar Citação</button>
+                    </div>
+                    <div id="list-frases" class="space-y-4 bg-gray-100 p-6 rounded-3xl"></div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="py-20 border-t border-white/5 text-center mt-20">
-        <div class="serif text-3xl text-[var(--gold)] mb-4 italic uppercase tracking-tighter">Ambrósio Jonas</div>
-        <p class="text-[9px] tracking-[0.5em] text-gray-600 uppercase font-black italic">Escritor Contemporâneo • Luanda • África</p>
+        <div class="serif text-3xl text-[var(--gold)] mb-4 italic tracking-tighter uppercase">Ambrósio Jonas</div>
+        <p class="text-[9px] tracking-[0.5em] text-gray-600 uppercase font-black">Escritor Contemporâneo • Luanda</p>
     </footer>
 
+    <!-- FIREBASE & LOGIC -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDERUMUvR9uc3NbcypmcD9_y3TxM4Q7R2Q",
@@ -219,63 +208,98 @@
             document.getElementById('panel-artigos').classList.toggle('hidden', tab !== 'artigos');
             document.getElementById('panel-livros').classList.toggle('hidden', tab !== 'livros');
             document.getElementById('panel-frases').classList.toggle('hidden', tab !== 'frases');
-            document.getElementById('tab-artigos').className = tab === 'artigos' ? 'pb-4 admin-tab-active' : 'pb-4 text-gray-400';
-            document.getElementById('tab-livros').className = tab === 'livros' ? 'pb-4 admin-tab-active' : 'pb-4 text-gray-400';
-            document.getElementById('tab-frases').className = tab === 'frases' ? 'pb-4 admin-tab-active' : 'pb-4 text-gray-400';
+            document.querySelectorAll('#admin-panel button').forEach(b => b.classList.remove('admin-tab-active'));
+            document.getElementById('tab-'+tab).classList.add('admin-tab-active');
         };
 
         window.checkPass = () => {
             if(document.getElementById('admin-pass').value === 'ambro2004') {
                 document.getElementById('admin-auth').classList.add('hidden');
                 document.getElementById('admin-panel').classList.remove('hidden');
-            } else { alert("Senha incorreta."); }
+                loadAdminLists();
+            } else { alert("Acesso Negado."); }
         };
 
-        // SALVAR DADOS
+        // --- PUBLICAR ---
         window.publishArticle = async () => {
+            const btn = document.getElementById('btn-art'); btn.innerText = "A Processar...";
             const title = document.getElementById('art-title').value;
             const content = document.getElementById('art-content').value;
-            const cat = document.getElementById('art-cat').value;
-            const img = document.getElementById('art-img').value || "https://images.unsplash.com/photo-1455390582262-044cdead277a";
-            if(!title || !content) return alert("Preencha título e conteúdo!");
-            await addDoc(collection(db, "posts"), { title, content, cat, img, timestamp: Date.now(), date: new Date().toLocaleDateString('pt-PT', {day:'2-digit', month:'long'}) });
-            alert("Artigo publicado!"); location.reload();
+            if(!title || !content) return alert("Preencha o conteúdo!");
+            await addDoc(collection(db, "posts"), {
+                title, content, cat: document.getElementById('art-cat').value,
+                img: document.getElementById('art-img').value || "https://images.unsplash.com/photo-1455390582262-044cdead277a",
+                timestamp: Date.now(), date: new Date().toLocaleDateString('pt-PT')
+            });
+            alert("Artigo publicado com sucesso!");
+            location.reload();
         };
 
         window.publishBook = async () => {
-            const title = document.getElementById('book-title').value;
-            const desc = document.getElementById('book-desc').value;
-            const img = document.getElementById('book-img').value;
-            const link = document.getElementById('book-link').value;
-            await addDoc(collection(db, "books"), { title, desc, img, link, timestamp: Date.now() });
+            const btn = document.getElementById('btn-book'); btn.innerText = "A Processar...";
+            await addDoc(collection(db, "books"), {
+                title: document.getElementById('book-title').value,
+                link: document.getElementById('book-link').value,
+                img: document.getElementById('book-img').value,
+                desc: document.getElementById('book-desc').value,
+                timestamp: Date.now()
+            });
             alert("Livro adicionado!"); location.reload();
         };
 
         window.publishQuote = async () => {
-            const text = document.getElementById('quote-text').value;
-            if(!text) return alert("Escreva a frase!");
-            await addDoc(collection(db, "quotes"), { text, timestamp: Date.now() });
+            const btn = document.getElementById('btn-quote'); btn.innerText = "A Processar...";
+            await addDoc(collection(db, "quotes"), {
+                text: document.getElementById('quote-text').value,
+                timestamp: Date.now()
+            });
             alert("Frase publicada!"); location.reload();
         };
 
-        // CARREGAR DADOS
+        // --- ELIMINAR ---
+        window.deleteItem = async (col, id) => {
+            if(confirm("Deseja apagar permanentemente?")) {
+                await deleteDoc(doc(db, col, id));
+                alert("Eliminado!"); loadAdminLists();
+            }
+        };
+
+        // --- CARREGAR DADOS GESTÃO ---
+        async function loadAdminLists() {
+            const lists = { posts: 'list-artigos', books: 'list-livros', quotes: 'list-frases' };
+            for (const [col, divId] of Object.entries(lists)) {
+                const snap = await getDocs(query(collection(db, col), orderBy("timestamp", "desc")));
+                let html = `<h4 class='text-[10px] font-black uppercase mb-4 text-gray-400'>Gestão de ${col}</h4>`;
+                snap.forEach(d => {
+                    html += `<div class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <span class="font-bold text-sm truncate max-w-[200px]">${d.data().title || d.data().text}</span>
+                        <button onclick="deleteItem('${col}', '${d.id}')" class="text-red-500 font-black text-[10px] uppercase">Apagar</button>
+                    </div>`;
+                });
+                document.getElementById(divId).innerHTML = html;
+            }
+        }
+
+        // --- CARREGAR PÁGINAS PÚBLICAS ---
         async function loadFeed() {
-            const grid = document.getElementById('feed-container'); grid.innerHTML = '';
+            const grid = document.getElementById('feed-container'); grid.innerHTML = 'A carregar...';
             const snap = await getDocs(query(collection(db, "posts"), orderBy("timestamp", "desc")));
+            let html = '';
             snap.forEach(doc => {
                 const p = doc.data();
-                grid.innerHTML += `
-                    <div class="cursor-pointer bg-white/[0.02] border border-white/5 p-6 rounded-3xl hover:border-[var(--gold)] transition duration-500 group" 
-                         onclick="openPost('${encodeURIComponent(p.title)}', '${p.cat}', '${p.date}', '${p.img}', \`${encodeURIComponent(p.content)}\`)">
-                        <img src="${p.img}" class="h-60 w-full object-cover rounded-2xl mb-6 grayscale group-hover:grayscale-0 transition duration-700">
-                        <span class="text-[var(--gold)] text-[9px] font-black uppercase tracking-widest">${p.cat}</span>
-                        <h3 class="serif text-2xl font-bold mt-4 mb-4">${p.title}</h3>
-                        <p class="text-gray-500 text-sm line-clamp-3 mb-6">${p.content}</p>
-                        <div class="flex justify-between text-[9px] font-black text-gray-600 uppercase tracking-widest pt-6 border-t border-white/5">
-                            <span>${p.date}</span><span>Ler Artigo +</span>
-                        </div>
-                    </div>`;
+                html += `
+                <div class="cursor-pointer bg-white/[0.02] border border-white/5 p-6 rounded-3xl hover:border-[var(--gold)] transition group" 
+                     onclick="openPost('${encodeURIComponent(p.title)}', '${p.cat}', '${p.date}', '${p.img}', \`${encodeURIComponent(p.content)}\`)">
+                    <img src="${p.img}" class="h-60 w-full object-cover rounded-2xl mb-6 grayscale group-hover:grayscale-0">
+                    <span class="text-[var(--gold)] text-[9px] font-black uppercase">${p.cat}</span>
+                    <h3 class="serif text-2xl font-bold mt-2 mb-4 group-hover:text-white">${p.title}</h3>
+                    <p class="text-gray-500 text-sm line-clamp-3 mb-6 font-light">${p.content}</p>
+                    <div class="flex justify-between text-[9px] font-black text-gray-600 uppercase pt-4 border-t border-white/5">
+                        <span>${p.date}</span><span>Ler Artigo +</span>
+                    </div>
+                </div>`;
             });
+            grid.innerHTML = html || '<p class="col-span-3 text-center opacity-40 italic">Ainda sem publicações.</p>';
         }
 
         async function loadBooks() {
@@ -284,43 +308,33 @@
             snap.forEach(doc => {
                 const b = doc.data();
                 grid.innerHTML += `
-                    <div class="bg-white/5 p-6 rounded-3xl border border-white/5 hover:border-[var(--gold)] transition text-center">
-                        <img src="${b.img}" class="h-72 w-full object-cover rounded-xl shadow-2xl mb-6">
-                        <h3 class="serif text-xl font-bold mb-2">${b.title}</h3>
-                        <p class="text-gray-500 text-[11px] line-clamp-2 mb-6 font-light italic leading-relaxed">${b.desc}</p>
-                        <a href="${b.link}" target="_blank" class="block w-full py-4 gold-gradient text-black font-black uppercase text-[9px] tracking-widest rounded-lg">Baixar Grátis</a>
-                    </div>`;
+                <div class="bg-white/5 p-6 rounded-3xl border border-white/5 hover:border-[var(--gold)] transition text-center">
+                    <img src="${b.img}" class="h-64 w-full object-cover rounded-xl shadow-2xl mb-6">
+                    <h3 class="serif text-xl font-bold mb-2">${b.title}</h3>
+                    <a href="${b.link}" target="_blank" class="block w-full py-4 gold-gradient text-black font-black uppercase text-[9px] tracking-widest rounded-lg shadow-lg">Download PDF</a>
+                </div>`;
             });
         }
 
         async function loadQuotes() {
             const container = document.getElementById('quotes-container');
             const snap = await getDocs(query(collection(db, "quotes"), orderBy("timestamp", "desc")));
-            if(!snap.empty) container.innerHTML = '';
+            let html = '';
             snap.forEach(doc => {
-                const q = doc.data();
-                container.innerHTML += `
-                    <div class="quote-card p-10 rounded-2xl animate-pageFade">
-                        <p class="serif text-3xl md:text-4xl italic text-white leading-relaxed">"${q.text}"</p>
-                        <p class="mt-6 text-[var(--gold)] font-bold uppercase tracking-widest text-[10px]">— Ambrósio José Jonas</p>
-                    </div>`;
+                html += `<div class="quote-card p-10 rounded-2xl italic serif text-3xl text-white">"${doc.data().text}"<p class="text-[var(--gold)] not-italic text-[10px] mt-6 font-black uppercase">— Ambrósio Jonas</p></div>`;
             });
+            container.innerHTML = html || '<p class="text-center italic opacity-40">Mural à espera das primeiras palavras.</p>';
         }
 
         window.openPost = (title, cat, date, img, content) => {
             const view = document.getElementById('reader-view'); goTo('reader');
             view.innerHTML = `
-                <div class="space-y-12 pb-20 fade-in">
-                    <span class="text-[var(--gold)] font-black uppercase text-[10px] tracking-[0.4em]">${cat}</span>
+                <div class="space-y-10 pb-20 fade-in">
                     <h1 class="serif text-5xl md:text-8xl font-black leading-tight">${decodeURIComponent(title)}</h1>
-                    <p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest border-b border-white/5 pb-8 italic">${date} • Por Ambrósio José Jonas</p>
-                    <img src="${img}" class="w-full h-auto rounded-3xl shadow-2xl">
-                    <div class="reading text-xl md:text-3xl text-gray-300 space-y-10 italic">
-                        ${decodeURIComponent(content).replace(/\n/g, '<br>')}
-                    </div>
-                    <button onclick="goTo('blog')" class="pt-20 text-[var(--gold)] font-black uppercase text-xs tracking-widest flex items-center gap-2">← Voltar ao Feed</button>
+                    <img src="${img}" class="w-full h-auto rounded-3xl shadow-2xl border border-white/10">
+                    <div class="reading text-xl md:text-3xl text-gray-300 space-y-10 italic">${decodeURIComponent(content).replace(/\n/g, '<br>')}</div>
+                    <button onclick="goTo('blog')" class="pt-10 text-[var(--gold)] font-black uppercase text-xs tracking-widest">← Voltar ao Feed</button>
                 </div>`;
-            lucide.createIcons();
         };
 
         lucide.createIcons();
